@@ -5,6 +5,7 @@ import { authenticate, verifyRoles } from '@/app/middlewares/auth.middleware';
 
 const usersRouter = Router();
 
+usersRouter.get('/invite-code-by-name', userController.getNameByInviteCode);
 usersRouter.get('/me', authenticate, userController.getMe);
 usersRouter.get(
   '/:id',

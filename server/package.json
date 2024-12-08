@@ -10,7 +10,7 @@
     "start": "node -r tsconfig-paths/register dist/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "db:fresh": "npx prisma db push --force-reset && npx prisma migrate dev",
+    "db:fresh": "prisma db push --force-reset && prisma migrate dev",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
