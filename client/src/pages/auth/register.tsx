@@ -15,6 +15,8 @@ import { IconPhone } from '@/assets/icons/icon-phone';
 import { CONSTANTS } from '@/constants';
 import { useQuery } from 'react-query';
 import { getNameByInviteCode } from '@/api/users';
+import { toast } from 'sonner';
+import { useNavigateOnError } from '@/hooks/useNavigateOnError';
 
 const tabs = [
   {
@@ -34,12 +36,14 @@ const tabs = [
 export function Register() {
   const [searchParams, setSearchParams] = useSearchParams();
   const inviteCode = searchParams.get('inviteCode');
+  const navigateOnError = useNavigateOnError('/');
 
   const { data } = useQuery(['inviteCode', inviteCode], {
     queryFn: () => getNameByInviteCode(inviteCode),
-    onError: (error) => {
-      console.error(error);
-      alert('Failed to fetch sponsor name');
+    onError: () => {
+      toast.error('Invalid Invite Code', {
+        ...navigateOnError,
+      });
     },
     retry: false,
   });
@@ -89,7 +93,7 @@ export function Register() {
               <AnimatePresence>
                 <Content
                   inviteCode={inviteCode}
-                  sponsorName={data?.data?.name}
+                  sponsorName={data?.success ? data.data.name : ''}
                 />
               </AnimatePresence>
             </Tabs.Content>

@@ -1,8 +1,11 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { AxiosError } from 'axios';
+import { useMutation } from 'react-query';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/form/checkbox';
@@ -15,9 +18,8 @@ import { IconBag } from '@/assets/icons/icon-bag';
 import { IconInvitation } from '@/assets/icons/icon-invitation';
 import { IconPhone } from '@/assets/icons/icon-phone';
 import { IconUser } from '@/assets/icons/icon-user';
-import { useMutation } from 'react-query';
+
 import { registerApi } from '@/api/auth';
-// import { Link, useForm } from '@inertiajs/react';
 
 type RegisterWithPhoneProps = {
   inviteCode: string | null;
@@ -55,6 +57,7 @@ export const RegisterWithPhone = ({
   inviteCode,
   sponsorName,
 }: RegisterWithPhoneProps) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -66,7 +69,30 @@ export const RegisterWithPhone = ({
     },
   });
 
-  const { mutate, isLoading } = useMutation(registerApi);
+  const { mutate, isLoading } = useMutation(registerApi, {
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        const errorData = error?.response?.data;
+        if (errorData) {
+          toast.error(errorData.message);
+        } else {
+          toast.error('Something went wrong');
+        }
+      } else if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error('Something went wrong');
+      }
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success(data.message);
+        navigate('/login');
+      } else {
+        toast.error(data.message);
+      }
+    },
+  });
 
   const onSubmit = async (data: RegisterWithPhoneData) => {
     mutate(data);
@@ -105,7 +131,9 @@ export const RegisterWithPhone = ({
             disabled
           />
         </div>
-        <InputError>{!sponsorName && 'Invalid Invite Code'}</InputError>
+        <InputError>
+          {!sponsorName && !isLoading && 'Invalid Invite Code'}
+        </InputError>
         <InputError>{errors.invite_code?.message}</InputError>
       </InputItem>
 
@@ -133,11 +161,6 @@ export const RegisterWithPhone = ({
           placeholder="Enter your phone number"
           id="phone"
           {...register('phone')}
-          // minLength={10}
-          // maxLength={10}
-          // value={data.phone}
-          // onChange={(value) => setData('phone', value)}
-          // required
         />
         <InputError>{errors.phone?.message}</InputError>
       </InputItem>
@@ -151,11 +174,7 @@ export const RegisterWithPhone = ({
           type="password"
           placeholder="Enter your password"
           id="password"
-          // name="password"
           {...register('password')}
-          // value={data.password}
-          // onChange={(value) => setData('password', value)}
-          // required
         />
         <InputError>{errors.password?.message}</InputError>
       </InputItem>
@@ -169,25 +188,14 @@ export const RegisterWithPhone = ({
           type="password"
           placeholder="Enter your password again"
           id="password_confirmation"
-          // name="password_confirmation"
           {...register('password_confirmation')}
-          // value={data.password_confirmation}
-          // onChange={(value) => setData('password_confirmation', value)}
-          // required
         />
         <InputError>{errors.password_confirmation?.message}</InputError>
       </InputItem>
 
       <InputItem>
         <div className="flex items-center gap-2 py-2">
-          <Checkbox
-            id="agree_privacy"
-            {...register('agree_privacy')}
-            // name="agree_privacy"
-            // checked={data.agree_privacy}
-            // onChange={(value) => setData('agree_privacy', value)}
-            // required
-          />
+          <Checkbox id="agree_privacy" {...register('agree_privacy')} />
           <label htmlFor="agree_privacy" className="text-neutral-700">
             I have read and agree{' '}
             <a href="#" className="text-primary hover:underline">
