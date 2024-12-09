@@ -24,6 +24,9 @@ export const login = catchAsyncError(async (req, res) => {
       phone,
       password,
     },
+    include: {
+      wallet: true,
+    },
   });
 
   if (!user) {

@@ -1,10 +1,17 @@
 import { GuestHeader } from '@/components/guest-header';
+import { useUser } from '@/session/user';
 import capitalize from 'lodash/capitalize';
-import { Outlet, useLocation } from 'react-router';
-// import { Toaster } from 'sonner';
+import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 
 export function GuestLayout() {
+  const navigate = useNavigate();
   const trimmedUrl = useLocation().pathname.substring(1).split('?')[0];
+  const user = useUser();
+
+  useEffect(() => {
+    if (user) navigate('/dashboard');
+  }, [user, navigate]);
 
   const title = capitalize(trimmedUrl);
   const description =
@@ -20,7 +27,6 @@ export function GuestLayout() {
           <Outlet />
         </div>
       </div>
-      {/* <Toaster richColors position="top-center" closeButton /> */}
     </div>
   );
 }
