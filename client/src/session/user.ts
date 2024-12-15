@@ -1,5 +1,6 @@
-import { getMe } from '@/api/users';
 import { useQuery } from 'react-query';
+
+import { getMe } from '@/api/users';
 
 export const useUser = () => {
   const { data } = useQuery(['users', 'me'], {
