@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/register" element={<Register />} />
             </Route>
             <Route element={<AuthenticatedLayout />}>
-              <Route path="dashboard" element={<Home />} />
+              <Route path="home" element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
