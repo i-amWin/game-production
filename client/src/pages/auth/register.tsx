@@ -1,22 +1,26 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import * as Tabs from '@radix-ui/react-tabs';
+import { AnimatePresence, motion } from 'framer-motion';
+import { toast } from 'sonner';
 
-// import { RegisterWithEmail } from './components/register-with-email';
-import { RegisterWithPhone } from './components/register-with-phone';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useQuery } from 'react-query';
+import { useSearchParams } from 'react-router';
+
 import { For } from '@/components/flow/for';
 import { Show } from '@/components/flow/show';
+
+import { useNavigateOnError } from '@/hooks/useNavigateOnError';
+
+import { getNameByInviteCode } from '@/api/users';
 
 // import { IconEmail } from '@/assets/icons/icon-email';
 import { IconPhone } from '@/assets/icons/icon-phone';
 
 import { CONSTANTS } from '@/constants';
-import { useQuery } from 'react-query';
-import { getNameByInviteCode } from '@/api/users';
-import { toast } from 'sonner';
-import { useNavigateOnError } from '@/hooks/useNavigateOnError';
+
+// import { RegisterWithEmail } from './components/register-with-email';
+import { RegisterWithPhone } from './components/register-with-phone';
 
 const tabs = [
   {

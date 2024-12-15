@@ -1,8 +1,9 @@
 import { Slot } from '@radix-ui/react-slot';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { type VariantProps, cva } from 'class-variance-authority';
+
+import { forwardRef } from 'react';
 
 import { cn } from '@/utils/cn';
-import { forwardRef } from 'react';
 
 const buttonVariants = cva(
   'inline-flex justify-center rounded-full font-medium text-lg transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed',

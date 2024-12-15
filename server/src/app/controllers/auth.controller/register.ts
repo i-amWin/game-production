@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
-import { CustomError } from '@/utils/custom-error';
-
 import { catchAsyncError } from '@/app/helpers/catch-async-error';
 import { generateCode } from '@/app/helpers/generate-code';
+
+import { CustomError } from '@/utils/custom-error';
+
 import { prisma } from '@/db';
 
 const registerSchema = z.object({

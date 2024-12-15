@@ -1,16 +1,20 @@
-import { FormEventHandler } from 'react';
 import { motion } from 'framer-motion';
+
+import { FormEventHandler } from 'react';
+import { Link } from 'react-router';
+
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/form/checkbox';
 import { Input } from '@/components/ui/form/input';
 // import { InputError } from '@/components/ui/form/input-error';
 import { InputItem } from '@/components/ui/form/input-item';
 import { Label } from '@/components/ui/form/label';
+
 import { IconBag } from '@/assets/icons/icon-bag';
 import { IconEmail } from '@/assets/icons/icon-email';
 import { IconInvitation } from '@/assets/icons/icon-invitation';
 import { IconUser } from '@/assets/icons/icon-user';
-import { Link } from 'react-router';
+
 // import { Link, useForm } from '@inertiajs/react';
 
 type RegisterWithEmailProps = {

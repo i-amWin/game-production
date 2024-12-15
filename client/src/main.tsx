@@ -1,17 +1,20 @@
+import { Toaster } from 'sonner';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Toaster } from 'sonner';
-import './index.css';
-import { App } from './App.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { GuestLayout } from './layouts/guest-layout.tsx';
+
 import { Login } from '@/pages/auth/login.tsx';
 import { Register } from '@/pages/auth/register.tsx';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+
+import { App } from './App.tsx';
 import { CONSTANTS } from './constants.ts';
-import { Home } from './pages/user/home.tsx';
+import './index.css';
 import { AuthenticatedLayout } from './layouts/authenticated-layout.tsx';
+import { GuestLayout } from './layouts/guest-layout.tsx';
+import { Home } from './pages/user/home.tsx';
 
 const queryClient = new QueryClient();
 

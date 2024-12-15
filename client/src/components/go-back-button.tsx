@@ -1,6 +1,8 @@
-import { useGoBack } from '@/hooks/useGoBack';
-import { cn } from '@/utils/cn';
 import { ChevronLeft } from 'lucide-react';
+
+import { useGoBack } from '@/hooks/useGoBack';
+
+import { cn } from '@/utils/cn';
 
 type GoBackButtonProps = {
   className?: string;

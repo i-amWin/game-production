@@ -2,7 +2,9 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 import app from '@/app/app';
+
 import { env } from '@/config/env';
+
 import { initSocketServer } from '@/sockets/socket.server';
 
 import { prisma } from './db';

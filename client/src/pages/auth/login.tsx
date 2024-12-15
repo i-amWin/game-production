@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
 import * as Tabs from '@radix-ui/react-tabs';
+import { AnimatePresence, motion } from 'framer-motion';
 
-// import { LoginWithEmail } from './components/login-with-email';
-import { LoginWithPhone } from './components/login-with-phone';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from 'react-router';
+
 import { For } from '@/components/flow/for';
 import { Show } from '@/components/flow/show';
 
@@ -13,6 +12,9 @@ import { Show } from '@/components/flow/show';
 import { IconPhone } from '@/assets/icons/icon-phone';
 
 import { CONSTANTS } from '@/constants';
+
+// import { LoginWithEmail } from './components/login-with-email';
+import { LoginWithPhone } from './components/login-with-phone';
 
 const tabs = [
   {

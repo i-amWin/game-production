@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
+
 import { Input } from './input';
 
 export type NumberInputProps = Omit<

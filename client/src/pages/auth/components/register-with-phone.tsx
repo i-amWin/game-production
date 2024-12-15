@@ -1,11 +1,12 @@
-import { Link, useNavigate } from 'react-router';
-import { motion } from 'framer-motion';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
 import { AxiosError } from 'axios';
+import { motion } from 'framer-motion';
+import { toast } from 'sonner';
+import { z } from 'zod';
+
+import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { Link, useNavigate } from 'react-router';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/form/checkbox';
@@ -14,12 +15,12 @@ import { InputError } from '@/components/ui/form/input-error';
 import { InputItem } from '@/components/ui/form/input-item';
 import { Label } from '@/components/ui/form/label';
 
+import { registerApi } from '@/api/auth';
+
 import { IconBag } from '@/assets/icons/icon-bag';
 import { IconInvitation } from '@/assets/icons/icon-invitation';
 import { IconPhone } from '@/assets/icons/icon-phone';
 import { IconUser } from '@/assets/icons/icon-user';
-
-import { registerApi } from '@/api/auth';
 
 type RegisterWithPhoneProps = {
   inviteCode: string | null;

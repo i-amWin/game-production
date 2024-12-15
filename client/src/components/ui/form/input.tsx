@@ -1,14 +1,11 @@
-import { cn } from '@/utils/cn';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
+
+import { cn } from '@/utils/cn';
 
 export type InputProps = ComponentPropsWithoutRef<'input'>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
-    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //   onChange?.(e.target.value);
-    // };
-
     return (
       <input
         ref={ref}

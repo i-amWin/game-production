@@ -1,8 +1,11 @@
-import { For } from '@/components/flow/for';
-import { CONSTANTS } from '@/constants';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+
 import { Helmet } from 'react-helmet-async';
+
+import { For } from '@/components/flow/for';
+
+import { CONSTANTS } from '@/constants';
 
 const carouselItems = [
   {

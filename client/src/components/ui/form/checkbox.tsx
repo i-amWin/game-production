@@ -1,5 +1,6 @@
-import { cn } from '@/utils/cn';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
+
+import { cn } from '@/utils/cn';
 
 export type CheckboxProps = Omit<ComponentPropsWithoutRef<'input'>, 'type'>;
 

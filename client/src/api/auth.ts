@@ -1,8 +1,11 @@
-import { RegisterWithPhoneData } from '@/pages/auth/components/register-with-phone';
-import { api } from '.';
-import { createApiResponseSchema } from '@/utils/create-api-response-schema';
 import { z } from 'zod';
+
 import { LoginWithPhoneData } from '@/pages/auth/components/login-with-phone';
+import { RegisterWithPhoneData } from '@/pages/auth/components/register-with-phone';
+
+import { createApiResponseSchema } from '@/utils/create-api-response-schema';
+
+import { api } from '.';
 
 const registerWithPhoneSchema = createApiResponseSchema(z.undefined());
 

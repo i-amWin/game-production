@@ -46,9 +46,7 @@ export const Portal = ({
 
     const originalPadding =
       parseInt(
-        window
-          .getComputedStyle(document.body)
-          .getPropertyValue('padding-right'),
+        window.getComputedStyle(document.body).getPropertyValue('padding-right')
       ) || 0;
 
     const scrollBarWidth = preserveScrollBarGap
@@ -76,7 +74,7 @@ export const Portal = ({
         onClose();
       }
     },
-    [onClose],
+    [onClose]
   );
 
   useEffect(() => {
@@ -127,7 +125,7 @@ export const Portal = ({
     if (!mounted || !el) return;
 
     const focusableElements = el.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
 
     const firstFocusable = (focusableElements[0] as HTMLElement) || el;
@@ -173,6 +171,6 @@ export const Portal = ({
     >
       {children}
     </div>,
-    el,
+    el
   );
 };

@@ -1,8 +1,11 @@
-import { GuestHeader } from '@/components/guest-header';
-import { useUser } from '@/session/user';
 import capitalize from 'lodash/capitalize';
+
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
+
+import { GuestHeader } from '@/components/guest-header';
+
+import { useUser } from '@/session/user';
 
 export function GuestLayout() {
   const navigate = useNavigate();

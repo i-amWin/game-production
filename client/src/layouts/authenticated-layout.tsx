@@ -1,6 +1,7 @@
-import { useUser } from '@/session/user';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
+
+import { useUser } from '@/session/user';
 
 export function AuthenticatedLayout() {
   const navigate = useNavigate();

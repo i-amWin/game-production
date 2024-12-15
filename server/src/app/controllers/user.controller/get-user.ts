@@ -1,8 +1,9 @@
 import { z } from 'zod';
 
+import { catchAsyncError } from '@/app/helpers/catch-async-error';
+
 import { CustomError } from '@/utils/custom-error';
 
-import { catchAsyncError } from '@/app/helpers/catch-async-error';
 import { prisma } from '@/db';
 
 const getUserParamsSchema = z.object({

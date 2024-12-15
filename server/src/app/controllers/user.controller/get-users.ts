@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { catchAsyncError } from '@/app/helpers/catch-async-error';
+
 import { prisma } from '@/db';
 
 const getUsersQuerySchema = z.object({

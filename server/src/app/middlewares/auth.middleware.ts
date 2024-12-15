@@ -3,10 +3,12 @@ import jwt from 'jsonwebtoken';
 
 import { NextFunction, Request, Response } from 'express';
 
+import { catchAsyncError } from '@/app/helpers/catch-async-error';
+
 import { CustomError } from '@/utils/custom-error';
 
-import { catchAsyncError } from '@/app/helpers/catch-async-error';
 import { env } from '@/config/env';
+
 import { prisma } from '@/db';
 
 // Authentication middleware

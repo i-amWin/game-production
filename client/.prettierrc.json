@@ -8,7 +8,7 @@
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "^node:.*",
-    "^(react|express|next|zod)",
+    "^(react|express|next)",
     "^@/layouts/(.*)$",
     "^@/pages/(.*)$",
     "^@/components/(.*)$",

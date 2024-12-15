@@ -1,6 +1,8 @@
 import { z } from 'zod';
-import { api } from '.';
+
 import { createApiResponseSchema } from '@/utils/create-api-response-schema';
+
+import { api } from '.';
 import { UserSchema } from './schema-and-types';
 
 const getNameByInviteCodeSchema = createApiResponseSchema(

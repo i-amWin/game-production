@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 import { CONSTANTS } from '@/config/constants';
+
 import { prisma } from '@/db';
 
 async function main() {

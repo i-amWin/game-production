@@ -1,16 +1,19 @@
+// import { Link, useForm } from '@inertiajs/react';
+import { motion } from 'framer-motion';
+
+import { FormEventHandler } from 'react';
+import { Link } from 'react-router';
+
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/form/checkbox';
 import { Input } from '@/components/ui/form/input';
 // import { InputError } from '@/components/ui/form/input-error';
 import { InputItem } from '@/components/ui/form/input-item';
 import { Label } from '@/components/ui/form/label';
+
 // import { useAlert } from '@/hooks/useAlert';
 import { IconBag } from '@/assets/icons/icon-bag';
 import { IconEmail } from '@/assets/icons/icon-email';
-// import { Link, useForm } from '@inertiajs/react';
-import { motion } from 'framer-motion';
-import { FormEventHandler } from 'react';
-import { Link } from 'react-router';
 
 export const LoginWithEmail = () => {
   // useAlert('error');
