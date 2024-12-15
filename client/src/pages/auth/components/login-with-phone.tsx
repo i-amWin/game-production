@@ -1,33 +1,71 @@
+import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from 'react-query';
+import { AxiosError } from 'axios';
+import { toast } from 'sonner';
+
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/form/checkbox';
 import { Input } from '@/components/ui/form/input';
-// import { InputError } from '@/components/ui/form/input-error';
 import { InputItem } from '@/components/ui/form/input-item';
 import { Label } from '@/components/ui/form/label';
-import { NumberInput } from '@/components/ui/form/number-input';
-// import { useAlert } from '@/Hooks/useAlert';
+import { InputError } from '@/components/ui/form/input-error';
+
 import { IconBag } from '@/assets/icons/icon-bag';
 import { IconPhone } from '@/assets/icons/icon-phone';
-// import { Link, useForm } from '@inertiajs/react';
-import { motion } from 'framer-motion';
-import { FormEventHandler } from 'react';
-import { Link } from 'react-router';
+
+import { loginApi } from '@/api/auth';
+
+const loginWithPhoneSchema = z.object({
+  phone: z
+    .string()
+    .regex(/^\d+$/, 'Phone number must be numeric')
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(10, 'Phone number must be at most 10 digits'),
+  password: z.string().min(4, 'Password must be at least 4 characters'),
+});
+
+export type LoginWithPhoneData = z.infer<typeof loginWithPhoneSchema>;
 
 export const LoginWithPhone = () => {
-  // useAlert('error');
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginWithPhoneData>({
+    resolver: zodResolver(loginWithPhoneSchema),
+  });
 
-  // const { data, setData, post, processing, errors, reset } = useForm({
-  //   phone: '',
-  //   password: '',
-  //   remember: false,
-  // });
+  const { mutate, isLoading } = useMutation(loginApi, {
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        const errorData = error?.response?.data;
+        if (errorData) {
+          toast.error(errorData.message);
+        } else {
+          toast.error('Something went wrong');
+        }
+      } else if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error('Something went wrong');
+      }
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success(data.message);
+        navigate('/dashboard');
+      } else {
+        toast.error(data.message);
+      }
+    },
+  });
 
-  const submit: FormEventHandler = (e) => {
-    e.preventDefault();
-
-    // post(route('login-phone'), {
-    //   onFinish: () => reset('password'),
-    // });
+  const onSubmit = async (data: LoginWithPhoneData) => {
+    mutate(data);
   };
 
   return (
@@ -41,24 +79,19 @@ export const LoginWithPhone = () => {
         x: -100,
       }}
       className="space-y-6 py-6"
-      onSubmit={submit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <InputItem>
         <Label className="flex gap-2" htmlFor="phone">
           <IconPhone className="w-6 text-primary" />
           Phone
         </Label>
-        <NumberInput
+        <Input
           placeholder="Enter your phone number"
           id="phone"
-          name="phone"
-          minLength={10}
-          maxLength={10}
-          // value={data.phone}
-          // onChange={(value) => setData('phone', value)}
-          required
+          {...register('phone')}
         />
-        {/* <InputError>{errors.phone}</InputError> */}
+        <InputError>{errors.phone?.message}</InputError>
       </InputItem>
 
       <InputItem>
@@ -69,30 +102,12 @@ export const LoginWithPhone = () => {
         <Input
           type="password"
           placeholder="Enter your password"
-          id="password"
-          name="password"
-          // value={data.password}
-          // onChange={(value) => setData('password', value)}
-          required
+          {...register('password')}
         />
-        {/* <InputError>{errors.password}</InputError> */}
+        <InputError>{errors.password?.message}</InputError>
       </InputItem>
 
-      <InputItem>
-        <div className="flex items-center gap-2 py-2">
-          <Checkbox
-            id="agree_privacy"
-            name="agree_privacy"
-            // checked={data.remember}
-            // onChange={(value) => setData('remember', value)}
-          />
-          <label htmlFor="agree_privacy" className="text-neutral-700">
-            Remember me.
-          </label>
-        </div>
-      </InputItem>
-
-      <Button size="full" type="submit" disabled={false}>
+      <Button size="full" type="submit" disabled={isLoading}>
         Login
       </Button>
 
@@ -102,7 +117,13 @@ export const LoginWithPhone = () => {
         asChild
         className="text-neutral-400"
       >
-        <Link to="/register" className="group w-full text-center">
+        <Link
+          to={{
+            pathname: '/register',
+            search: `inviteCode=PD000001`,
+          }}
+          className="group w-full text-center"
+        >
           Don't have an account?
           <span className="ml-2 font-bold text-primary group-hover:underline">
             Register
