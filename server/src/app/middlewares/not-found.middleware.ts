@@ -1,6 +1,6 @@
 import { NextFunction, Request } from 'express';
 
-import { CustomResponse } from '@/@types/response';
+import { CustomResponse } from '@/types/response';
 
 export const notFoundMiddleware = (
   req: Request,

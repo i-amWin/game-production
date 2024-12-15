@@ -9,11 +9,15 @@
   "importOrder": [
     "^node:.*",
     "^(react|express|next)",
+    "^@/app/(.*)$",
+    "^@/db/(.*)$",
     "^@/core/(.*)$",
     "^@/hooks/(.*)$",
     "^@/components/(.*)$",
     "^@/utils/(.*)$",
+    "^@/lib/(.*)$",
     "^@/types/(.*)$",
+    "^@/config/(.*)$",
     "^@/(.*)$",
     "^[./]"
   ],

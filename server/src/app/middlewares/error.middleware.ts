@@ -4,7 +4,7 @@ import { NextFunction, Request } from 'express';
 
 import { CustomError } from '@/utils/custom-error';
 
-import { CustomResponse } from '@/@types/response';
+import { CustomResponse } from '@/types/response';
 
 export const errorMiddleware = (
   err: unknown,

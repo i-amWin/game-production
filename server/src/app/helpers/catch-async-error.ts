@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { CustomResponse } from '@/@types/response';
+import { CustomResponse } from '@/types/response';
 
 type AsyncHandler = (
   req: Request,
