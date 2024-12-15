@@ -10,7 +10,7 @@ export function GuestLayout() {
   const user = useUser();
 
   useEffect(() => {
-    if (user) navigate('/dashboard');
+    if (user) navigate('/home');
   }, [user, navigate]);
 
   const title = capitalize(trimmedUrl);

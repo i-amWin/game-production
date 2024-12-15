@@ -1,8 +1,8 @@
-import { For } from '@/Components/For';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { For } from '@/components/flow/for';
+import { CONSTANTS } from '@/constants';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { Helmet } from 'react-helmet-async';
 
 const carouselItems = [
   {
@@ -19,29 +19,16 @@ const carouselItems = [
   },
 ];
 
-export default function Dashboard() {
+export const Home = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true, active: true }, [
     Autoplay({ delay: 4000 }),
   ]);
 
   return (
-    <AuthenticatedLayout
-      header={
-        <h2 className="text-xl font-semibold leading-tight text-gray-800">
-          Dashboard
-        </h2>
-      }
-      className="px-4"
-    >
-      <Head title="Dashboard" />
-
-      {/* <div className="py-12">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">You're logged in!</div>
-          </div>
-        </div>
-      </div> */}
+    <>
+      <Helmet>
+        <title>{CONSTANTS.APP_NAME} | Home</title>
+      </Helmet>
       <div className="overflow-hidden rounded-md" ref={emblaRef}>
         <div className="flex">
           <For items={carouselItems}>
@@ -57,6 +44,6 @@ export default function Dashboard() {
           </For>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </>
   );
-}
+};

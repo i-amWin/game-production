@@ -10,7 +10,7 @@ import { Login } from '@/pages/auth/login.tsx';
 import { Register } from '@/pages/auth/register.tsx';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { CONSTANTS } from './constants.ts';
-import { Dashboard } from './pages/user/dashboard.tsx';
+import { Home } from './pages/user/home.tsx';
 import { AuthenticatedLayout } from './layouts/authenticated-layout.tsx';
 
 const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/register" element={<Register />} />
             </Route>
             <Route element={<AuthenticatedLayout />}>
-              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dashboard" element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
