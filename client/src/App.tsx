@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 
-export const App = () => {
+const App = () => {
   return (
-    <div className="w-full min-h-screen bg-neutral-900 text-white flex justify-center items-center flex-col gap-4 text-4xl">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4 bg-neutral-900 text-4xl text-white">
       <div>Main Page</div>
       <Link to="/login">Login</Link>
       <Link
@@ -16,3 +16,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;

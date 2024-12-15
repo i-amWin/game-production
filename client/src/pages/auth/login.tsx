@@ -31,7 +31,7 @@ const tabs = [
   // },
 ];
 
-export function Login() {
+export default function Login() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [active, setActive] = useState<string>(
     searchParams.get('method') || tabs[0].name

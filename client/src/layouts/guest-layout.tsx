@@ -26,9 +26,9 @@ export function GuestLayout() {
     <div className="bg-background">
       <div className="mx-auto flex min-h-screen max-w-[26rem] flex-col overflow-x-hidden bg-clr-neutral">
         <GuestHeader title={title} description={description} />
-        <div className="w-full px-4 py-4">
+        <main className="w-full px-4 py-4">
           {user ? 'Loading...' : <Outlet />}
-        </div>
+        </main>
       </div>
     </div>
   );

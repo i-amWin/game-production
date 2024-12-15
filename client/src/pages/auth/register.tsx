@@ -37,7 +37,7 @@ const tabs = [
   // },
 ];
 
-export function Register() {
+export default function Register() {
   const [searchParams, setSearchParams] = useSearchParams();
   const inviteCode = searchParams.get('inviteCode');
   const navigateOnError = useNavigateOnError('/');

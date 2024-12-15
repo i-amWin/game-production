@@ -58,7 +58,7 @@ export const LoginWithPhone = () => {
     onSuccess: (data) => {
       if (data.success) {
         toast.success(data.message);
-        navigate('/dashboard');
+        navigate('/home');
       } else {
         toast.error(data.message);
       }

@@ -25,7 +25,7 @@ const carouselItems = [
   },
 ];
 
-export const Home = () => {
+const Home = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true, active: true }, [
     Autoplay({ delay: 4000 }),
   ]);
@@ -42,7 +42,7 @@ export const Home = () => {
         <div className="relative">
           <IconNotification className="h-8 text-primary" />
 
-          <div className="animate-pulse-animation absolute right-0 top-0 inline-block aspect-square w-2 rounded-full bg-primary" />
+          <div className="absolute right-0 top-0 inline-block aspect-square w-2 animate-pulse-animation rounded-full bg-primary" />
         </div>
       </header>
       <main>
@@ -65,3 +65,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

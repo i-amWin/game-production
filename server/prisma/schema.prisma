@@ -35,6 +35,16 @@ enum Role {
   @@map("roles")
 }
 
+model Banner {
+  id        Int      @id @default(autoincrement()) @map("id")
+  image     String   @map("image") @db.VarChar(255)
+  status    Boolean  @default(true) @map("status")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("banners")
+}
+
 model User {
   id           Int          @id @default(autoincrement()) @map("id")
   referralCode String?      @unique @map("referral_code") @db.VarChar(20)

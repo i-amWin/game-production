@@ -7,12 +7,14 @@ import express from 'express';
 import { errorMiddleware } from '@/app/middlewares/error.middleware';
 import { notFoundMiddleware } from '@/app/middlewares/not-found.middleware';
 import authRouter from '@/app/routes/auth.routes';
+import bannerRouter from '@/app/routes/banners.routes';
 import usersRouter from '@/app/routes/users.routes';
 
 const app = express();
 
 // Middleware setup
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || '*',
@@ -26,6 +28,8 @@ app.use(cookieParser());
 app.use('/users', usersRouter);
 
 app.use('/auth', authRouter);
+
+app.use('/banners', bannerRouter);
 
 // Health check endpoint
 app.get('/health-check', (_, res) => {
