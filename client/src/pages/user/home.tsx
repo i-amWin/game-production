@@ -3,7 +3,10 @@ import useEmblaCarousel from 'embla-carousel-react';
 
 import { Helmet } from 'react-helmet-async';
 
+import ApplicationLogo from '@/components/application-logo';
 import { For } from '@/components/flow/for';
+
+import { IconNotification } from '@/assets/icons/icon-notification';
 
 import { CONSTANTS } from '@/constants';
 
@@ -32,21 +35,33 @@ export const Home = () => {
       <Helmet>
         <title>{CONSTANTS.APP_NAME} | Home</title>
       </Helmet>
-      <div className="overflow-hidden rounded-md" ref={emblaRef}>
-        <div className="flex">
-          <For items={carouselItems}>
-            {(item) => (
-              <div key={item.id} className="min-w-0 flex-[0_0_100%]">
-                <img
-                  src={item.url}
-                  alt={`Slide ${item.id}`}
-                  className="aspect-video w-full bg-red-400 object-contain"
-                />
-              </div>
-            )}
-          </For>
+
+      <header className="flex justify-between pb-3">
+        <ApplicationLogo className="h-8 fill-primary" />
+
+        <div className="relative">
+          <IconNotification className="h-8 text-primary" />
+
+          <div className="animate-pulse-animation absolute right-0 top-0 inline-block aspect-square w-2 rounded-full bg-primary" />
         </div>
-      </div>
+      </header>
+      <main>
+        <div className="overflow-hidden rounded-md" ref={emblaRef}>
+          <div className="flex">
+            <For items={carouselItems}>
+              {(item) => (
+                <div key={item.id} className="min-w-0 flex-[0_0_100%]">
+                  <img
+                    src={item.url}
+                    alt={`Slide ${item.id}`}
+                    className="aspect-video w-full bg-red-400 object-contain"
+                  />
+                </div>
+              )}
+            </For>
+          </div>
+        </div>
+      </main>
     </>
   );
 };

@@ -14,7 +14,7 @@ export function AuthenticatedLayout() {
   return (
     <div className="bg-background">
       <div className="mx-auto flex min-h-screen max-w-[26rem] flex-col overflow-x-hidden bg-clr-neutral">
-        <div className="w-full px-4 py-4">
+        <div className="w-full px-4 py-3">
           {user ? <Outlet /> : 'Loading...'}
         </div>
       </div>
