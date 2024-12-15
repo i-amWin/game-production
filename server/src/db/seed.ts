@@ -16,6 +16,13 @@ async function main() {
       activatedAt: new Date(),
       activeStatus: 'ACTIVE',
       blockStatus: 'UN_BLOCKED',
+      wallet: {
+        create: {
+          bonusWallet: 0,
+          rechargeWallet: 0,
+          winningWallet: 0,
+        },
+      },
     },
   });
 

@@ -57,6 +57,13 @@ export const register = catchAsyncError(async (req, res) => {
         phone,
         password,
         referredBy: referrer.id,
+        wallet: {
+          create: {
+            bonusWallet: 0,
+            rechargeWallet: 0,
+            winningWallet: 0,
+          },
+        },
       },
       select: {
         id: true,
