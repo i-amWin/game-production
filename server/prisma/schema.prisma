@@ -37,7 +37,7 @@ enum Role {
 
 model Settings {
   id    Int    @id @default(autoincrement()) @map("id")
-  key   String @map("key") @db.VarChar(255)
+  key   String @unique @map("key") @db.VarChar(255)
   value String @map("value") @db.VarChar(255)
 
   @@map("settings")
