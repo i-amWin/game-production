@@ -35,6 +35,14 @@ enum Role {
   @@map("roles")
 }
 
+model Settings {
+  id    Int    @id @default(autoincrement()) @map("id")
+  key   String @map("key") @db.VarChar(255)
+  value String @map("value") @db.VarChar(255)
+
+  @@map("settings")
+}
+
 model Banner {
   id        Int      @id @default(autoincrement()) @map("id")
   image     String   @map("image") @db.VarChar(255)
