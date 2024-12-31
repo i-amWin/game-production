@@ -8,6 +8,7 @@ import { errorMiddleware } from '@/app/middlewares/error.middleware';
 import { notFoundMiddleware } from '@/app/middlewares/not-found.middleware';
 import authRouter from '@/app/routes/auth.routes';
 import bannerRouter from '@/app/routes/banners.routes';
+import settingsRouter from '@/app/routes/settings.routes';
 import usersRouter from '@/app/routes/users.routes';
 
 const app = express();
@@ -30,6 +31,8 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.use('/banners', bannerRouter);
+
+app.use('/settings', settingsRouter);
 
 // Health check endpoint
 app.get('/health-check', (_, res) => {
